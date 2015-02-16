@@ -123,6 +123,7 @@ namespace Pretzel
 
                 foreach (var l in loadedAssemblies)
                     catalog.Catalogs.Add(new AssemblyCatalog(l));
+
                 container = new CompositionContainer(catalog);
 
                 var batch = new CompositionBatch();

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 
 namespace Pretzel.Logic.Extensions
 {
@@ -545,13 +546,13 @@ namespace Pretzel.Logic.Extensions
 
         public static DateTime Datestamp(this string file)
         {
-            var fileName = file.Substring(file.LastIndexOf("\\"));
+			var fileName = file.Substring(file.LastIndexOf(Path.DirectorySeparatorChar));
             var tokens = fileName.Split('-');
 
             if (tokens.Length < 3)
                 return DateTime.Now;
 
-            var timestampText = string.Join("-", tokens.Take(3)).Trim('\\');
+			var timestampText = string.Join("-", tokens.Take(3)).Trim(Path.DirectorySeparatorChar);
 
             DateTime timestamp;
             return DateTime.TryParse(timestampText, out timestamp) ? timestamp : DateTime.Now;
